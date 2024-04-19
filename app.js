@@ -21,7 +21,7 @@ app.post("/", (req, res) => {
   res.json({ message: message });
 });
 
-app.get("/ab?de", (req, res) => {
+app.get(/\/pqr|\/def/, (req, res) => {
   console.log(req.path)
   const apiPath = req.path;
   const apiEndPoint = apiPath.replace('/','');
