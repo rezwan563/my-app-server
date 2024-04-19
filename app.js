@@ -10,29 +10,25 @@ app.use(bodyParser.json());
 
 let seriolNo = 0;
 app.post("/", (req, res) => {
-if(req.body){
+  if (req.body) {
     seriolNo++;
-}
-const message = "message recived";
-const {name, guest, assistance, payment} = req.body;
+  }
+  const message = "message recived";
+  const { name, guest, assistance, payment } = req.body;
 
-const newGuest = `${seriolNo} ${name} ${guest} ${assistance} ${payment}`;
-console.log(newGuest);
- fs.writeFile("./test.txt", `\n${newGuest}`, {flag: 'a+'}, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log("The file was saved!");
-}); 
-  console.log("body\n", req.body);
-  console.log(message);
+  const newGuest = `${seriolNo} ${name} ${guest} ${assistance} ${payment}`;
+  console.log(newGuest);
   res.json({ message: message });
 });
 
-app.get("/abc", (req, res) => {
+app.get("/ab?de", (req, res) => {
+  console.log(req.path)
+  const apiPath = req.path;
+  const apiEndPoint = apiPath.replace('/','');
+  console.log('endpoint - ', apiEndPoint)
   const message = "new route yay!";
   console.log(message);
-  res.send(message);
+  res.send({status: 'success', message: 'you\'ve reached your destination'});
 });
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
