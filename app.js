@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
-const multer = require("multer");
-const upload = multer({ dest: "./uploads" });
+const upload = require('./upload');
 const port = 3000;
 
 app.use(cors());
@@ -25,6 +24,8 @@ app.post("/", (req, res) => {
 app.post("/url", (req, res) => {
   const message = "new route yay!";
   try {
+    
+    
     console.log("req.body\n", req.body);
     console.log("req.file\n", req.files);
   } catch (error) {
