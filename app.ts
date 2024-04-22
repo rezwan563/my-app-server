@@ -4,24 +4,17 @@ const cors = require("cors");
 const fs = require("fs");
 const upload = require('./upload');
 const port = 3000;
+import { Response, Request } from "express";
 
 app.use(cors());
 app.use(upload.any());
 
 let seriolNo = 0;
-app.post("/", (req, res) => {
-  if (req.body) {
-    seriolNo++;
-  }
-  const message = "message recived";
-  const { name, guest, assistance, payment } = req.body;
-
-  const newGuest = `${seriolNo} ${name} ${guest} ${assistance} ${payment}`;
-  console.log(newGuest);
-  res.json({ message: message });
+app.get("/", (req: Request,res: Response) => {
+ res.send("server on")
 });
 
-app.post("/url", express.json(), (req, res) => {
+app.post("/url", express.json(), (req: Request, res: Response) => {
   const message = "new route yay!";
   try {
     
@@ -35,7 +28,9 @@ app.post("/url", express.json(), (req, res) => {
   res.send({ status: "success", message: "you've reached your destination" });
 });
 
-app.get('/page-one', (req,res) =>{
+
+app.get('/page-one', (req: Request,res: Response) =>{
+  const query: { [key: string]: unknown } = {};
   const people = [
     { name: 'John', gender: 'Male', age: 30, location: 'New York' },
     { name: 'Alice', gender: 'Female', age: 25, location: 'London' },
