@@ -2,16 +2,16 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
-const upload = require("./upload");
 const port = 3000;
 import { Response, Request } from "express";
 
 app.use(cors());
-app.use(upload.any());
+
+//  ts-node-dev --respawn --transpile-only src/server.ts
 
 let seriolNo = 0;
 app.get("/", (req: Request, res: Response) => {
-  res.send("server on");
+  res.send("server is one");
 });
 
 app.post("/url", express.json(), (req: Request, res: Response) => {
