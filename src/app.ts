@@ -13,7 +13,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("server is one");
 });
 
+// starts all route from here
+
 app.use('/api/sayhi', homeRouter)
+
 
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
