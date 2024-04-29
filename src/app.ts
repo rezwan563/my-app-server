@@ -5,6 +5,7 @@ const fs = require("fs");
 const port = 3000;
 import { Response, Request } from "express";
 import homeRouter from "./modules/home/home.route";
+import userRouter from "./modules/user/user.route";
 
 app.use(cors());
 app.use(express.json())
@@ -16,6 +17,7 @@ app.get("/", (req: Request, res: Response) => {
 // starts all route from here
 
 app.use('/api/sayhi', homeRouter)
+app.use('/api/user', userRouter)
 
 
 app.listen(port, () => {

@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
     "prisma": "^5.13.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
   }
 }
