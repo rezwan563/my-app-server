@@ -1,25 +1,49 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import { createUserService, loginUserService } from "./user.service";
 import bcrypt from "bcrypt";
 
 export const handleSignup = async (req: Request, res: Response) => {
   try {
     console.log("sign up handler");
-    const { email, password } = req.body;
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const createUser = await createUserService(email, hashedPassword);
+    const createUser = await createUserService(req.body);
+    if (createUser) {
+      const responseMessage = {
+        status: "Success",
+        message: "User created",
+      };
+      res.status(200).json(responseMessage);
+    }
     const responseMessage = {
-      status: "success",
-      message: "user created",
+      status: "Error",
+      message: "Email already exists",
+      
     };
-    res.send(responseMessage);
+    res.status(403).json(responseMessage);
   } catch (error) {
-    console.error(error);
+    const responseMessagge = {
+      status: "Error",
+      message: "Failded to create user",
+    };
+    res.status(400).json(responseMessagge);
   }
 };
 
 export const handleSignin = async (req: Request, res: Response) => {
-  console.log("login controller e ashche");
-  const { email, password } = req.body;
-  const result = await loginUserService(email, password)
+  try {
+     await loginUserService(req.body);
+
+    const responseMessage = {
+      status: "Success",
+      message: "User logged in",
+    };
+    res.status(200).json(responseMessage);
+  } catch (error) {
+    const responseMessage = {
+      status: "Error",
+      message: "Failed to log in",
+      error: error instanceof Error ? error.message : "Unexpected error",
+    };
+
+    res.status(401).json(responseMessage);
+  }
 };
