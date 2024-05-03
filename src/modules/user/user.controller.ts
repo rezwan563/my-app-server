@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 
 export const handleSignup = async (req: Request, res: Response) => {
   try {
-    console.log("sign up handler");
     const createUser = await createUserService(req.body);
     if (createUser) {
       const responseMessage = {
