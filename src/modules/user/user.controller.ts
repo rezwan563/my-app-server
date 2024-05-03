@@ -1,6 +1,5 @@
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import { createUserService, loginUserService } from "./user.service";
-import bcrypt from "bcrypt";
 
 export const handleSignup = async (req: Request, res: Response) => {
   try {

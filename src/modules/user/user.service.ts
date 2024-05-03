@@ -17,8 +17,7 @@ export const createUserService = async (data: UserCredential) => {
       }
     })
     if(userExist){
-      // throw createHttpError(400, 'User already exits')
-      return;
+      throw createHttpError(400, 'User already exits')
     }
     const user = await prisma.user.create({
       data:{
